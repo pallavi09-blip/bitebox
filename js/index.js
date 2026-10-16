@@ -73,7 +73,7 @@ function updateOrderSummary() {
 
 }
 
-let cart=[];
+let cart=JSON.parse(localStorage.getItem("biteboxCart"))||[];
 let menuContainer=document.getElementById("menu-items");
 if(menuContainer){
     menuContainer.addEventListener("click",function(event){
@@ -128,25 +128,63 @@ else
     cart.push(cartItem);
 }
 console.log("cart",cart);
+localStorage.setItem("biteboxCart",JSON.stringify(cart));
+renderCart();
 }
 
-let cartBody=(
-    document.querySelector("#shopping-cart tbody")
-);
 
-function renderCart(){
-cartBody.innerHTML="";
 
-}
+//dynamically aad to cart 
+let cartBody=document.querySelector("#shopping-cart tbody");
+
+console.log(cartBody);
+
 
 function renderCart(){
     if(!cartBody){
+        console.log("rendercart");
         return;
     }
-cartBody.innerHTML="";
-cart.forEach(function(item,index){
+    cartBody.innerHTML="";
+
+    if (cart.length === 0) {
+
+        let row = document.createElement("tr");
+
+    
+        row.innerHTML = `
+
+            <td colspan="5">
+
+                <div class="empty-cart">
+
+                    <h3> Your Cart is Empty</h3>
+
+                    <p>
+                        Add some delicious food
+                        from our Menu!
+                    </p>
+
+
+
+            </div>
+
+            </td>
+
+        `;
+
+
+        cartBody.appendChild(row);
+
+        return;
+
+    }
+
+    cart.forEach(function(item,index)
+    {
     let itemTotal=item.price* item.quantity;
     let row=document.createElement("tr");
+    console.log(row);
     row.innerHTML=
                     `<td>
 
@@ -211,5 +249,7 @@ cart.forEach(function(item,index){
             </td>`;
             cartBody.appendChild(row);
 });
-}
+   
 
+}
+renderCart();
