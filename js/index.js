@@ -253,3 +253,131 @@ function renderCart(){
 
 }
 renderCart();
+
+//search a specifc item in the cart 
+let menucards=document.querySelectorAll("#menu-items article");
+function searchMenu(){
+    let searchv=document.querySelector("input").value.trim().toLowerCase();
+    menucards.forEach((card)=>{
+        let foodName=card.querySelector("h3").textContent.trim().toLowerCase();
+        if(foodName.includes(searchv)){
+            card.style.display="";
+        }
+        else{
+            card.style.display="none";
+        }
+    })
+}
+
+//search by category
+let categorybuttons=document.querySelectorAll("#category-buttons button");
+function filterMenu(category) {
+ 
+    menucards.forEach(function(card) {
+        let cardCategory = card.dataset.category.toLowerCase();
+ 
+        if (cardCategory === category) {
+            card.style.display = "";
+        }
+        else {
+            card.style.display = "none";
+        }
+    });
+ 
+}
+
+categoryCards.forEach(
+    function(card) {
+ 
+        card.addEventListener("click",function() {
+                let category = card.querySelector("h3")
+                        .textContent
+                        .trim()
+                        .toLowerCase();
+                filterMenu(category);
+            }
+        );
+    }
+);
+
+//toggle theme day and night mode 
+
+let themeButton = document.getElementById("theme-toggle");
+
+
+function toggleTheme() {
+    document.body.classList.toggle("dark-theme");
+
+    let themeIcon = themeButton.querySelector(".theme-icon");
+  
+    let themeText = themeButton.querySelector(".theme-text");
+
+    if (document.body.classList.contains("dark-theme")) {
+        themeIcon.textContent = "☾";
+        themeText.textContent ="NIGHT MODE";
+        localStorage.setItem("biteboxTheme","dark");
+    }  
+
+ else {
+        themeIcon.textContent = "☀";
+        themeText.textContent ="DAY MODE";
+        localStorage.setItem("biteboxTheme","light");
+
+    }
+}
+
+function loadTheme() {
+    let savedTheme = localStorage.getItem("biteboxTheme");
+
+    /* Disable animation while loading */
+    document.body.classList.add("theme-loading");
+
+    if (savedTheme === "dark") {
+       document.body.classList.add("dark-theme");
+    }
+
+
+else {
+        document.body.classList.remove("dark-theme");
+    }
+
+    let themeIcon = themeButton.querySelector(".theme-icon");
+
+    let themeText = themeButton.querySelector(".theme-text");
+
+    if (savedTheme === "dark") {
+        if (themeIcon) {
+            themeIcon.textContent ="☾";
+        }
+
+        if (themeText) {
+            themeText.textContent = "NIGHT MODE";
+        }
+    }
+
+    else {
+
+        if (themeIcon) {
+            themeIcon.textContent = "☀";
+        }
+
+
+        if (themeText) {
+            themeText.textContent = "DAY MODE";
+        }
+    }
+
+    /* Allow animation again */
+    setTimeout(function () {
+        document.body.classList.remove("theme-loading");
+    }, 50);
+
+}
+
+if (themeButton) {
+     themeButton.addEventListener("click",function () {
+            toggleTheme();
+        }
+    );
+}
+loadTheme();

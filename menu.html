@@ -43,34 +43,34 @@
     <h2>Browse Categories</h2>
 
     <div>
-        <article>
+        <article data-category="pizza">
             <img src="C:\bitebox\assets\images\pizza_icon.png" alt="Pizza"   
-             width="120" height="120">
-            <h3>Pizza</h3>
+             width="120" height="120" onclick="filterMenu('pizza')">
+            <h3 >Pizza</h3>
         </article>
 
-        <article>
+        <article data-category="burger">
             <img src="C:\bitebox\assets\images\burger_icon.jpeg" alt="Burger" 
-            width="120" height="120">
+            width="120" height="120" onclick="filterMenu('burger')">
             <h3>Burger</h3>
         </article>
            
-        <article>
+        <article data-category="pasta">
             <img src="C:\bitebox\assets\images\pasta_icon.png" width="120" 
-            height="120">
-            <h3>Pasta</h3>
+            height="120" onclick="filterMenu('pasta')">
+            <h3 >Pasta</h3>
         </article>
 
-        <article>
+        <article data-category="biryani">
             <img src="C:\bitebox\assets\images\biryani_icon.jpeg" width="120" 
-            height="120">
+            height="120" onclick="filterMenu('biryani')">
             <h3>Biryani</h3>
         </article>
 
-        <article>
+        <article data-category="desserts">
             <img src="C:\bitebox\assets\images\desert_icon.jpeg" alt="Desserts" 
              width="120"
-             height="120">
+             height="120" onclick="filterMenu('desserts')">
             <h3>Desserts</h3>
         </article>
     </div>
@@ -80,9 +80,17 @@
 
     <section id="menu-items">
    <h2>Our Menu</h2>
+   <section class="menu-search">
+   <input type="text" class="menu-search" placeholder="Search for dishes..." >
+    <button type="button" class="search-button" onclick="searchMenu()">
+        <img src="C:\bitebox\assets\icons\search.jpeg" alt="Search" width="20" height="20">
+    </button>
+    </section>
+    
    <div>
+    
       <!-- Menu Item 1 -->
-       <article>
+        <article>
            <img src="C:\bitebox\assets\images\images.jpeg"  width="220">
             <h3>Margherita Pizza</h3>
             <p> ⭐⭐⭐⭐⭐ <small>(120)</small> </p>
@@ -96,7 +104,7 @@
             <h3>Cheese Burger</h3>
             <p>⭐⭐⭐⭐⭐<small>(98)</small></p>
             <p class="price"> <strong> ₹199 </strong> </p>
-21
+
    <button> Add to Cart </button>
         </article>
 
@@ -120,7 +128,7 @@
             <p class="price"> <strong>₹279</strong> </p>
             <button> Add to Cart </button>
         </article>
-22
+
   <!-- Menu Item 5 -->
         <article>
             <img src="C:\bitebox\assets\images\desert.jpeg" width="220">
